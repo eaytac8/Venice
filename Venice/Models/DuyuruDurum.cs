@@ -15,8 +15,10 @@ namespace Venice.Models
     public partial class DuyuruDurum
     {
         public int ID { get; set; }
-        public int DuyuruID { get; set; }
+        public Nullable<int> DuyuruID { get; set; }
         public string DuyuruHareketi { get; set; }
         public Nullable<System.DateTime> HareketTarihi { get; set; }
+    
+        public virtual Duyurular Duyurular { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ParfumeriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="VeniceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Aroma">
     <Key>
       <PropertyRef Name="AromaID" />
@@ -40,9 +40,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DuyuruID" Type="Int32" Nullable="false" />
-    <Property Name="DuyuruHareketi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DuyuruID" Type="Int32" />
+    <Property Name="DuyuruHareketi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HareketTarihi" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Duyurular" Relationship="Self.FK_DuyuruDurum_Duyurular" FromRole="DuyuruDurum" ToRole="Duyurular" />
   </EntityType>
   <EntityType Name="Duyurular">
     <Key>
@@ -51,6 +52,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DuyuruBasligi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Duyuru" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DuyuruDurum" Relationship="Self.FK_DuyuruDurum_Duyurular" FromRole="Duyurular" ToRole="DuyuruDurum" />
   </EntityType>
   <EntityType Name="Marka">
     <Key>
@@ -107,10 +109,10 @@
     <Property Name="Ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Yas" Type="Int32" />
-    <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CinsiyetID" Type="Int32" />
-    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Uyeler_Cinsiyet" FromRole="Uyeler" ToRole="Cinsiyet" />
     <NavigationProperty Name="YorumTablo" Relationship="Self.FK_YorumTablo_Uyeler" FromRole="Uyeler" ToRole="YorumTablo" />
@@ -197,6 +199,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DuyuruDurum_Duyurular">
+    <End Role="Duyurular" Type="Self.Duyurular" Multiplicity="0..1" />
+    <End Role="DuyuruDurum" Type="Self.DuyuruDurum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Duyurular">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DuyuruDurum">
+        <PropertyRef Name="DuyuruID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Urunler_Marka">
     <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
     <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
@@ -234,9 +248,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_YorumTablo_Uyeler">
-    <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
     <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Uyeler">
@@ -293,6 +305,10 @@
       <End Role="Cinsiyet" EntitySet="Cinsiyet" />
       <End Role="Uyeler" EntitySet="Uyeler" />
     </AssociationSet>
+    <AssociationSet Name="FK_DuyuruDurum_Duyurular" Association="Self.FK_DuyuruDurum_Duyurular">
+      <End Role="Duyurular" EntitySet="Duyurular" />
+      <End Role="DuyuruDurum" EntitySet="DuyuruDurum" />
+    </AssociationSet>
     <AssociationSet Name="FK_Urunler_Marka" Association="Self.FK_Urunler_Marka">
       <End Role="Marka" EntitySet="Marka" />
       <End Role="Urunler" EntitySet="Urunler" />
@@ -313,58 +329,5 @@
       <End Role="Yorumlar" EntitySet="Yorumlar" />
       <End Role="YorumTablo" EntitySet="YorumTablo" />
     </AssociationSet>
-    <FunctionImport Name="DuyuruDelete">
-      <Parameter Name="ID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="DuyuruEkle">
-      <Parameter Name="DuyuruBasligi" Mode="In" Type="String" />
-      <Parameter Name="Duyuru" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="DuyuruUpdateStored">
-      <Parameter Name="ID" Mode="In" Type="Int32" />
-      <Parameter Name="DuyuruBasligi" Mode="In" Type="String" />
-      <Parameter Name="Duyuru" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ParfumeriModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ParfumeriModel.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
 </Schema>

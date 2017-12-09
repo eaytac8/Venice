@@ -14,8 +14,17 @@ namespace Venice.Models
     
     public partial class Duyurular
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Duyurular()
+        {
+            this.DuyuruDurum = new HashSet<DuyuruDurum>();
+        }
+    
         public int ID { get; set; }
         public string DuyuruBasligi { get; set; }
         public string Duyuru { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DuyuruDurum> DuyuruDurum { get; set; }
     }
 }

@@ -4,30 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4a8d5e74c1e4470eb9152115d71df8dc" Name="Diagram1">
-        <EntityTypeShape EntityType="ParfumeriModel.Aroma" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.AromaUrun" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Boyut" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Cinsiyet" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.DuyuruDurum" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Duyurular" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Marka" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Tur" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Urunler" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Uyeler" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.Yorumlar" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParfumeriModel.YorumTablo" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="ParfumeriModel.FK_AromaUrun_Aroma" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_AromaUrun_Urunler" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_Urunler_Boyut" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_Urunler_Cinsiyet" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_Uyeler_Cinsiyet" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_Urunler_Marka" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_Urunler_Tur" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_YorumTablo_Urunler" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_YorumTablo_Uyeler" ManuallyRouted="false" />
-        <AssociationConnector Association="ParfumeriModel.FK_YorumTablo_Yorumlar" ManuallyRouted="false" />
+      <Diagram DiagramId="ad981129cbbb431793c29b17f932b376" Name="Diagram1">
+        <EntityTypeShape EntityType="VeniceModel.Aroma" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.AromaUrun" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Boyut" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Cinsiyet" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.DuyuruDurum" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Duyurular" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Marka" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Tur" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Urunler" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Uyeler" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.Yorumlar" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeniceModel.YorumTablo" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="VeniceModel.FK_AromaUrun_Aroma" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_AromaUrun_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_Urunler_Boyut" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_Urunler_Cinsiyet" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_Uyeler_Cinsiyet" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_DuyuruDurum_Duyurular" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_Urunler_Marka" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_Urunler_Tur" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_YorumTablo_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_YorumTablo_Uyeler" ManuallyRouted="false" />
+        <AssociationConnector Association="VeniceModel.FK_YorumTablo_Yorumlar" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

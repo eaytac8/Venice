@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ParfumeriModelStoreContainer" CdmEntityContainer="ParfumeriEntities">
+  <EntityContainerMapping StorageEntityContainer="VeniceModelStoreContainer" CdmEntityContainer="ParfumeriEntities">
     <EntitySetMapping Name="Aroma">
-      <EntityTypeMapping TypeName="ParfumeriModel.Aroma">
+      <EntityTypeMapping TypeName="VeniceModel.Aroma">
         <MappingFragment StoreEntitySet="Aroma">
           <ScalarProperty Name="AromaID" ColumnName="AromaID" />
           <ScalarProperty Name="Adi" ColumnName="Adi" />
@@ -10,7 +10,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AromaUrun">
-      <EntityTypeMapping TypeName="ParfumeriModel.AromaUrun">
+      <EntityTypeMapping TypeName="VeniceModel.AromaUrun">
         <MappingFragment StoreEntitySet="AromaUrun">
           <ScalarProperty Name="AromaUrunID" ColumnName="AromaUrunID" />
           <ScalarProperty Name="UrunID" ColumnName="UrunID" />
@@ -19,7 +19,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Boyut">
-      <EntityTypeMapping TypeName="ParfumeriModel.Boyut">
+      <EntityTypeMapping TypeName="VeniceModel.Boyut">
         <MappingFragment StoreEntitySet="Boyut">
           <ScalarProperty Name="BoyutID" ColumnName="BoyutID" />
           <ScalarProperty Name="Boyutu" ColumnName="Boyutu" />
@@ -27,7 +27,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Cinsiyet">
-      <EntityTypeMapping TypeName="ParfumeriModel.Cinsiyet">
+      <EntityTypeMapping TypeName="VeniceModel.Cinsiyet">
         <MappingFragment StoreEntitySet="Cinsiyet">
           <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
           <ScalarProperty Name="Cinsiyeti" ColumnName="Cinsiyeti" />
@@ -35,7 +35,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DuyuruDurum">
-      <EntityTypeMapping TypeName="ParfumeriModel.DuyuruDurum">
+      <EntityTypeMapping TypeName="VeniceModel.DuyuruDurum">
         <MappingFragment StoreEntitySet="DuyuruDurum">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DuyuruID" ColumnName="DuyuruID" />
@@ -45,7 +45,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Duyurular">
-      <EntityTypeMapping TypeName="ParfumeriModel.Duyurular">
+      <EntityTypeMapping TypeName="VeniceModel.Duyurular">
         <MappingFragment StoreEntitySet="Duyurular">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DuyuruBasligi" ColumnName="DuyuruBasligi" />
@@ -54,7 +54,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Marka">
-      <EntityTypeMapping TypeName="ParfumeriModel.Marka">
+      <EntityTypeMapping TypeName="VeniceModel.Marka">
         <MappingFragment StoreEntitySet="Marka">
           <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
           <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
@@ -62,7 +62,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="ParfumeriModel.sysdiagrams">
+      <EntityTypeMapping TypeName="VeniceModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -73,7 +73,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tur">
-      <EntityTypeMapping TypeName="ParfumeriModel.Tur">
+      <EntityTypeMapping TypeName="VeniceModel.Tur">
         <MappingFragment StoreEntitySet="Tur">
           <ScalarProperty Name="TurID" ColumnName="TurID" />
           <ScalarProperty Name="Turu" ColumnName="Turu" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Urunler">
-      <EntityTypeMapping TypeName="ParfumeriModel.Urunler">
+      <EntityTypeMapping TypeName="VeniceModel.Urunler">
         <MappingFragment StoreEntitySet="Urunler">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
@@ -97,7 +97,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Uyeler">
-      <EntityTypeMapping TypeName="ParfumeriModel.Uyeler">
+      <EntityTypeMapping TypeName="VeniceModel.Uyeler">
         <MappingFragment StoreEntitySet="Uyeler">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Ad" ColumnName="Ad" />
@@ -112,7 +112,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Yorumlar">
-      <EntityTypeMapping TypeName="ParfumeriModel.Yorumlar">
+      <EntityTypeMapping TypeName="VeniceModel.Yorumlar">
         <MappingFragment StoreEntitySet="Yorumlar">
           <ScalarProperty Name="YorumID" ColumnName="YorumID" />
           <ScalarProperty Name="KonuBaslik" ColumnName="KonuBaslik" />
@@ -121,7 +121,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="YorumTablo">
-      <EntityTypeMapping TypeName="ParfumeriModel.YorumTablo">
+      <EntityTypeMapping TypeName="VeniceModel.YorumTablo">
         <MappingFragment StoreEntitySet="YorumTablo">
           <ScalarProperty Name="YorumTabloID" ColumnName="YorumTabloID" />
           <ScalarProperty Name="UyeID" ColumnName="UyeID" />
@@ -131,32 +131,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="DuyuruDelete" FunctionName="ParfumeriModel.Store.DuyuruDelete" />
-    <FunctionImportMapping FunctionImportName="DuyuruEkle" FunctionName="ParfumeriModel.Store.DuyuruEkle" />
-    <FunctionImportMapping FunctionImportName="DuyuruUpdateStored" FunctionName="ParfumeriModel.Store.DuyuruUpdateStored" />
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ParfumeriModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ParfumeriModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ParfumeriModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ParfumeriModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ParfumeriModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ParfumeriModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ParfumeriModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ParfumeriModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ParfumeriModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>
