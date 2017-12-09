@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Venice.Models.Urunler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Urun Ekle", "UrunEkle")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </th>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.Indirim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EklenmeTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Boyut.Boyutu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cinsiyet.Cinsiyeti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marka.MarkaAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tur.Turu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAdi)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Indirim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aciklama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EklenmeTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Boyut.Boyutu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cinsiyet.Cinsiyeti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marka.MarkaAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tur.Turu)
+        </td>
+        <td>
+            @Html.ActionLink("Resim Ekle", "ResimEkle", new { id=item.ID }) |           
+            <a href="~/Admin/UrunSil/@item.ID">Sil</a>
+        </td>
+    </tr>
+}
+
+</table>
+

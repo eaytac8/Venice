@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    Urunler urun = ViewBag.Urun as Urunler;
+    Uyeler uye = ViewBag.KullaniciUye as Uyeler;
+   
+}
+@using Venice.Models;
+
+  <!--page_container-->
+<div class="page_container">
+    <div class="breadcrumb">
+        <div class="wrap">
+            <div class="container">
+                <a href="index.html">Home</a><span>/</span>Ürün
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="container">
+            <section>
+                <div class="row pad5">
+                    <div class="span8">
+                        <div class="post">
+                            <img src="@Url.Content(urun.Resim)" alt="" />
+                            <div class="post_info">
+                                <div class="fleft">Eklenme Tarihi: @Url.Content(urun.EklenmeTarihi.ToString())</div>
+                                
+                                <div class="clear"></div>
+                            </div>
+                            @Url.Content(urun.Aciklama.ToString())
+                        </div>
+
+                        <!-- Comments -->
+                        <h4>Yorumlar</h4>
+                        <div id="comments">
+                            <ol>
+                                @foreach (YorumTablo yorumtablo in ViewBag.Yorumtablo) {
+
+                                    foreach (Yorumlar yorum in ViewBag.Yorumlar) {
+                                        if (yorumtablo.YorumID==yorum.YorumID) {
+                                            foreach (Uyeler uyeyorum in ViewBag.Uye) {
+                                                if (uyeyorum.ID==yorumtablo.UyeID) {
+                                                    <li>
+                                                        <div class="comment_right">
+                                                            <div class="comment_info">
+                                                      <a href="#">@uyeyorum.Ad @uyeyorum.Soyad</a> <span>|</span>Yorum Tarihi:  @yorumtablo.Tarih
+                                                            </div>
+                                                           @yorum.KonuIcerik
+                                                        </div>
+                                                        <div class="clear"></div>                              
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            </ol>
+                        </div>
+                        <!-- //Comments -->
+
+
+                        <!-- Leave a Comment -->
+                        <h4><p>Yorumla</p> </h4>
+                        <form action="~/Home/Yorum" method="post">
+                            <div class="post_info">
+                                <div class="fleft"><h4> @Url.Content(uye.Ad) @Url.Content(uye.Soyad)</h4></div>
+                                <div class="clear"></div>
+                            </div>      
+                                 
+                            <textarea name="Yorum" class="span7"></textarea>
+
+                            <div class="clear"></div>
+                            <input name="urunıd" value="@Url.Content(urun.ID.ToString())" hidden />                            
+                            <input type="submit" class="btn send_btn" value="Post Comment" />
+                            <div class="clear"></div>
+                        </form>
+                        <!-- //Leave a Comment -->
+
+                    </div>
+                    
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--//page_container-->

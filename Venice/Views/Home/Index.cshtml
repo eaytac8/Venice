@@ -1,0 +1,54 @@
+﻿@using Venice.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+    <!--page_container-->
+<div class="page_container">
+    <!--slider-->
+    <div id="main_slider">
+        <div class="camera_wrap" id="camera_wrap_1">
+            <div data-src="/Tamplate/img/slider/1.jpg"></div>
+            <div data-src="/Tamplate/img/slider/2.jpg"></div>
+            <div data-src="/Tamplate/img/slider/3.jpg"></div>
+        </div><!-- #camera_wrap_1 -->
+        <div class="clear"></div>
+    </div>
+    <!--//slider-->
+
+
+    <!--Welcome-->
+    <div class="wrap block">
+        @foreach (Duyurular duyuru in ViewBag.Duyuru) {
+        <div class="container welcome_block">
+            <div class="welcome_line welcome_t"></div>
+           <span>@duyuru.DuyuruBasligi</span>@duyuru.Duyuru
+            <div class="welcome_line welcome_b"></div>
+        </div>
+        }
+    </div>
+    <!--//Welcome-->      
+
+    <!--featured works-->
+    <div class="wrap block carousel_block">
+        <div class="container">
+            <h2 class="upper">Son Eklenenler</h2>
+            <div class="row">
+                <div class="span12">
+                    <ul id="mycarousel" class="jcarousel-skin-tango">
+                        @foreach (Urunler list in ViewBag.SonEklenen) {
+                        <li>
+                            <div class="hover_img">
+                                <a href="@list.Resim" rel="prettyPhoto[portfolio1]"><img src="@list.Resim" alt="" /></a>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//featured works-->
+
+
+ </div>

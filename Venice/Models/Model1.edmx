@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ParfumeriModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aroma">
+          <Key>
+            <PropertyRef Name="AromaID" />
+          </Key>
+          <Property Name="AromaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AromaUrun">
+          <Key>
+            <PropertyRef Name="AromaUrunID" />
+          </Key>
+          <Property Name="AromaUrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="AromaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Boyut">
+          <Key>
+            <PropertyRef Name="BoyutID" />
+          </Key>
+          <Property Name="BoyutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Boyutu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="CinsiyetID" />
+          </Key>
+          <Property Name="CinsiyetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cinsiyeti" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DuyuruDurum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DuyuruID" Type="int" Nullable="false" />
+          <Property Name="DuyuruHareketi" Type="nvarchar" MaxLength="50" />
+          <Property Name="HareketTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DuyuruBasligi" Type="nvarchar(max)" />
+          <Property Name="Duyuru" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="MarkaID" />
+          </Key>
+          <Property Name="MarkaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarkaAdi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tur">
+          <Key>
+            <PropertyRef Name="TurID" />
+          </Key>
+          <Property Name="TurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Turu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunAdi" Type="nvarchar(max)" />
+          <Property Name="MarkaID" Type="int" />
+          <Property Name="CinsiyetID" Type="int" />
+          <Property Name="TurID" Type="int" />
+          <Property Name="BoyutID" Type="int" />
+          <Property Name="Indirim" Type="int" />
+          <Property Name="Resim" Type="nvarchar(max)" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="EklenmeTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar(max)" />
+          <Property Name="Soyad" Type="nvarchar(max)" />
+          <Property Name="Yas" Type="int" />
+          <Property Name="Telefon" Type="nvarchar(max)" />
+          <Property Name="CinsiyetID" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Sifre" Type="nvarchar(max)" />
+          <Property Name="KayitTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KonuBaslik" Type="nvarchar(max)" />
+          <Property Name="KonuIcerik" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="YorumTablo">
+          <Key>
+            <PropertyRef Name="YorumTabloID" />
+          </Key>
+          <Property Name="YorumTabloID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UyeID" Type="int" />
+          <Property Name="YorumID" Type="int" />
+          <Property Name="UrunID" Type="int" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_AromaUrun_Aroma">
+          <End Role="Aroma" Type="Self.Aroma" Multiplicity="0..1" />
+          <End Role="AromaUrun" Type="Self.AromaUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aroma">
+              <PropertyRef Name="AromaID" />
+            </Principal>
+            <Dependent Role="AromaUrun">
+              <PropertyRef Name="AromaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AromaUrun_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="AromaUrun" Type="Self.AromaUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AromaUrun">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Boyut">
+          <End Role="Boyut" Type="Self.Boyut" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boyut">
+              <PropertyRef Name="BoyutID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="BoyutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="MarkaID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="MarkaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Tur">
+          <End Role="Tur" Type="Self.Tur" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tur">
+              <PropertyRef Name="TurID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="TurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Uyeler">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Yorumlar">
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="0..1" />
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yorumlar">
+              <PropertyRef Name="YorumID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="YorumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DuyuruDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DuyuruEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DuyuruBasligi" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Duyuru" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DuyuruUpdateStored" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="DuyuruBasligi" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Duyuru" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ParfumeriModelStoreContainer">
+          <EntitySet Name="Aroma" EntityType="Self.Aroma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AromaUrun" EntityType="Self.AromaUrun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boyut" EntityType="Self.Boyut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DuyuruDurum" EntityType="Self.DuyuruDurum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tur" EntityType="Self.Tur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YorumTablo" EntityType="Self.YorumTablo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AromaUrun_Aroma" Association="Self.FK_AromaUrun_Aroma">
+            <End Role="Aroma" EntitySet="Aroma" />
+            <End Role="AromaUrun" EntitySet="AromaUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AromaUrun_Urunler" Association="Self.FK_AromaUrun_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="AromaUrun" EntitySet="AromaUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Boyut" Association="Self.FK_Urunler_Boyut">
+            <End Role="Boyut" EntitySet="Boyut" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Cinsiyet" Association="Self.FK_Urunler_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Marka" Association="Self.FK_Urunler_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Tur" Association="Self.FK_Urunler_Tur">
+            <End Role="Tur" EntitySet="Tur" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Cinsiyet" Association="Self.FK_Uyeler_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Urunler" Association="Self.FK_YorumTablo_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Uyeler" Association="Self.FK_YorumTablo_Uyeler">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Yorumlar" Association="Self.FK_YorumTablo_Yorumlar">
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParfumeriModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aroma">
+          <Key>
+            <PropertyRef Name="AromaID" />
+          </Key>
+          <Property Name="AromaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AromaUrun" Relationship="Self.FK_AromaUrun_Aroma" FromRole="Aroma" ToRole="AromaUrun" />
+        </EntityType>
+        <EntityType Name="AromaUrun">
+          <Key>
+            <PropertyRef Name="AromaUrunID" />
+          </Key>
+          <Property Name="AromaUrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="AromaID" Type="Int32" />
+          <NavigationProperty Name="Aroma" Relationship="Self.FK_AromaUrun_Aroma" FromRole="AromaUrun" ToRole="Aroma" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_AromaUrun_Urunler" FromRole="AromaUrun" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Boyut">
+          <Key>
+            <PropertyRef Name="BoyutID" />
+          </Key>
+          <Property Name="BoyutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Boyutu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Boyut" FromRole="Boyut" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Cinsiyet">
+          <Key>
+            <PropertyRef Name="CinsiyetID" />
+          </Key>
+          <Property Name="CinsiyetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cinsiyeti" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Cinsiyet" FromRole="Cinsiyet" ToRole="Urunler" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_Uyeler_Cinsiyet" FromRole="Cinsiyet" ToRole="Uyeler" />
+        </EntityType>
+        <EntityType Name="DuyuruDurum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DuyuruID" Type="Int32" Nullable="false" />
+          <Property Name="DuyuruHareketi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HareketTarihi" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Duyurular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DuyuruBasligi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Duyuru" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="MarkaID" />
+          </Key>
+          <Property Name="MarkaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarkaAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Marka" FromRole="Marka" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tur">
+          <Key>
+            <PropertyRef Name="TurID" />
+          </Key>
+          <Property Name="TurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Turu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Tur" FromRole="Tur" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MarkaID" Type="Int32" />
+          <Property Name="CinsiyetID" Type="Int32" />
+          <Property Name="TurID" Type="Int32" />
+          <Property Name="BoyutID" Type="Int32" />
+          <Property Name="Indirim" Type="Int32" />
+          <Property Name="Resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AromaUrun" Relationship="Self.FK_AromaUrun_Urunler" FromRole="Urunler" ToRole="AromaUrun" />
+          <NavigationProperty Name="Boyut" Relationship="Self.FK_Urunler_Boyut" FromRole="Urunler" ToRole="Boyut" />
+          <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Urunler_Cinsiyet" FromRole="Urunler" ToRole="Cinsiyet" />
+          <NavigationProperty Name="Marka" Relationship="Self.FK_Urunler_Marka" FromRole="Urunler" ToRole="Marka" />
+          <NavigationProperty Name="Tur" Relationship="Self.FK_Urunler_Tur" FromRole="Urunler" ToRole="Tur" />
+          <NavigationProperty Name="YorumTablo" Relationship="Self.FK_YorumTablo_Urunler" FromRole="Urunler" ToRole="YorumTablo" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Yas" Type="Int32" />
+          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CinsiyetID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cinsiyet" Relationship="Self.FK_Uyeler_Cinsiyet" FromRole="Uyeler" ToRole="Cinsiyet" />
+          <NavigationProperty Name="YorumTablo" Relationship="Self.FK_YorumTablo_Uyeler" FromRole="Uyeler" ToRole="YorumTablo" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KonuBaslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KonuIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="YorumTablo" Relationship="Self.FK_YorumTablo_Yorumlar" FromRole="Yorumlar" ToRole="YorumTablo" />
+        </EntityType>
+        <EntityType Name="YorumTablo">
+          <Key>
+            <PropertyRef Name="YorumTabloID" />
+          </Key>
+          <Property Name="YorumTabloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyeID" Type="Int32" />
+          <Property Name="YorumID" Type="Int32" />
+          <Property Name="UrunID" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_YorumTablo_Urunler" FromRole="YorumTablo" ToRole="Urunler" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_YorumTablo_Uyeler" FromRole="YorumTablo" ToRole="Uyeler" />
+          <NavigationProperty Name="Yorumlar" Relationship="Self.FK_YorumTablo_Yorumlar" FromRole="YorumTablo" ToRole="Yorumlar" />
+        </EntityType>
+        <Association Name="FK_AromaUrun_Aroma">
+          <End Role="Aroma" Type="Self.Aroma" Multiplicity="0..1" />
+          <End Role="AromaUrun" Type="Self.AromaUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aroma">
+              <PropertyRef Name="AromaID" />
+            </Principal>
+            <Dependent Role="AromaUrun">
+              <PropertyRef Name="AromaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AromaUrun_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="AromaUrun" Type="Self.AromaUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AromaUrun">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Boyut">
+          <End Role="Boyut" Type="Self.Boyut" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boyut">
+              <PropertyRef Name="BoyutID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="BoyutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Cinsiyet">
+          <End Role="Cinsiyet" Type="Self.Cinsiyet" Multiplicity="0..1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinsiyet">
+              <PropertyRef Name="CinsiyetID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="CinsiyetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="MarkaID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="MarkaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Tur">
+          <End Role="Tur" Type="Self.Tur" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tur">
+              <PropertyRef Name="TurID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="TurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Uyeler">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YorumTablo_Yorumlar">
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="0..1" />
+          <End Role="YorumTablo" Type="Self.YorumTablo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yorumlar">
+              <PropertyRef Name="YorumID" />
+            </Principal>
+            <Dependent Role="YorumTablo">
+              <PropertyRef Name="YorumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParfumeriEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aroma" EntityType="Self.Aroma" />
+          <EntitySet Name="AromaUrun" EntityType="Self.AromaUrun" />
+          <EntitySet Name="Boyut" EntityType="Self.Boyut" />
+          <EntitySet Name="Cinsiyet" EntityType="Self.Cinsiyet" />
+          <EntitySet Name="DuyuruDurum" EntityType="Self.DuyuruDurum" />
+          <EntitySet Name="Duyurular" EntityType="Self.Duyurular" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tur" EntityType="Self.Tur" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+          <EntitySet Name="YorumTablo" EntityType="Self.YorumTablo" />
+          <AssociationSet Name="FK_AromaUrun_Aroma" Association="Self.FK_AromaUrun_Aroma">
+            <End Role="Aroma" EntitySet="Aroma" />
+            <End Role="AromaUrun" EntitySet="AromaUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AromaUrun_Urunler" Association="Self.FK_AromaUrun_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="AromaUrun" EntitySet="AromaUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Boyut" Association="Self.FK_Urunler_Boyut">
+            <End Role="Boyut" EntitySet="Boyut" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Cinsiyet" Association="Self.FK_Urunler_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Cinsiyet" Association="Self.FK_Uyeler_Cinsiyet">
+            <End Role="Cinsiyet" EntitySet="Cinsiyet" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Marka" Association="Self.FK_Urunler_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Tur" Association="Self.FK_Urunler_Tur">
+            <End Role="Tur" EntitySet="Tur" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Urunler" Association="Self.FK_YorumTablo_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Uyeler" Association="Self.FK_YorumTablo_Uyeler">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YorumTablo_Yorumlar" Association="Self.FK_YorumTablo_Yorumlar">
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+            <End Role="YorumTablo" EntitySet="YorumTablo" />
+          </AssociationSet>
+          <FunctionImport Name="DuyuruDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DuyuruEkle">
+            <Parameter Name="DuyuruBasligi" Mode="In" Type="String" />
+            <Parameter Name="Duyuru" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DuyuruUpdateStored">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="DuyuruBasligi" Mode="In" Type="String" />
+            <Parameter Name="Duyuru" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ParfumeriModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ParfumeriModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParfumeriModelStoreContainer" CdmEntityContainer="ParfumeriEntities">
+          <EntitySetMapping Name="Aroma">
+            <EntityTypeMapping TypeName="ParfumeriModel.Aroma">
+              <MappingFragment StoreEntitySet="Aroma">
+                <ScalarProperty Name="AromaID" ColumnName="AromaID" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AromaUrun">
+            <EntityTypeMapping TypeName="ParfumeriModel.AromaUrun">
+              <MappingFragment StoreEntitySet="AromaUrun">
+                <ScalarProperty Name="AromaUrunID" ColumnName="AromaUrunID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="AromaID" ColumnName="AromaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boyut">
+            <EntityTypeMapping TypeName="ParfumeriModel.Boyut">
+              <MappingFragment StoreEntitySet="Boyut">
+                <ScalarProperty Name="BoyutID" ColumnName="BoyutID" />
+                <ScalarProperty Name="Boyutu" ColumnName="Boyutu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinsiyet">
+            <EntityTypeMapping TypeName="ParfumeriModel.Cinsiyet">
+              <MappingFragment StoreEntitySet="Cinsiyet">
+                <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
+                <ScalarProperty Name="Cinsiyeti" ColumnName="Cinsiyeti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DuyuruDurum">
+            <EntityTypeMapping TypeName="ParfumeriModel.DuyuruDurum">
+              <MappingFragment StoreEntitySet="DuyuruDurum">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DuyuruID" ColumnName="DuyuruID" />
+                <ScalarProperty Name="DuyuruHareketi" ColumnName="DuyuruHareketi" />
+                <ScalarProperty Name="HareketTarihi" ColumnName="HareketTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duyurular">
+            <EntityTypeMapping TypeName="ParfumeriModel.Duyurular">
+              <MappingFragment StoreEntitySet="Duyurular">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DuyuruBasligi" ColumnName="DuyuruBasligi" />
+                <ScalarProperty Name="Duyuru" ColumnName="Duyuru" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marka">
+            <EntityTypeMapping TypeName="ParfumeriModel.Marka">
+              <MappingFragment StoreEntitySet="Marka">
+                <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
+                <ScalarProperty Name="MarkaAdi" ColumnName="MarkaAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ParfumeriModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tur">
+            <EntityTypeMapping TypeName="ParfumeriModel.Tur">
+              <MappingFragment StoreEntitySet="Tur">
+                <ScalarProperty Name="TurID" ColumnName="TurID" />
+                <ScalarProperty Name="Turu" ColumnName="Turu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="ParfumeriModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
+                <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
+                <ScalarProperty Name="TurID" ColumnName="TurID" />
+                <ScalarProperty Name="BoyutID" ColumnName="BoyutID" />
+                <ScalarProperty Name="Indirim" ColumnName="Indirim" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyeler">
+            <EntityTypeMapping TypeName="ParfumeriModel.Uyeler">
+              <MappingFragment StoreEntitySet="Uyeler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Yas" ColumnName="Yas" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="CinsiyetID" ColumnName="CinsiyetID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorumlar">
+            <EntityTypeMapping TypeName="ParfumeriModel.Yorumlar">
+              <MappingFragment StoreEntitySet="Yorumlar">
+                <ScalarProperty Name="YorumID" ColumnName="YorumID" />
+                <ScalarProperty Name="KonuBaslik" ColumnName="KonuBaslik" />
+                <ScalarProperty Name="KonuIcerik" ColumnName="KonuIcerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YorumTablo">
+            <EntityTypeMapping TypeName="ParfumeriModel.YorumTablo">
+              <MappingFragment StoreEntitySet="YorumTablo">
+                <ScalarProperty Name="YorumTabloID" ColumnName="YorumTabloID" />
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="YorumID" ColumnName="YorumID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DuyuruDelete" FunctionName="ParfumeriModel.Store.DuyuruDelete" />
+          <FunctionImportMapping FunctionImportName="DuyuruEkle" FunctionName="ParfumeriModel.Store.DuyuruEkle" />
+          <FunctionImportMapping FunctionImportName="DuyuruUpdateStored" FunctionName="ParfumeriModel.Store.DuyuruUpdateStored" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ParfumeriModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ParfumeriModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ParfumeriModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ParfumeriModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ParfumeriModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ParfumeriModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ParfumeriModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ParfumeriModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ParfumeriModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

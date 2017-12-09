@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "ResimEkle";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<form action="~/Admin/ResimEkle" method="post" enctype="multipart/form-data">
+    <table width="400" border="0">
+        <tr><td><input type="text" name="id" value="@ViewBag.id" hidden /></td>
+            <td width="250" align="center"><input type="file" name="Resim" id="Resim" /></td>
+            <td width="134" align="center"><input type="submit" value="Fotoğrafı Yükle" /></td>
+        </tr>
+    </table>
+</form>

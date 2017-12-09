@@ -1,0 +1,45 @@
+﻿@using Venice.Models;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!--page_container-->
+<div class="page_container">
+    <div class="breadcrumb">
+        <div class="wrap">
+            <div class="container">
+                <a href="index.html">Home</a><span>/</span>Ürünler
+            </div>
+        </div>
+    </div>
+    <!--MAIN CONTENT AREA-->
+    <div class="wrap">
+        <div class="container inner_content">
+            
+            <div class="row">
+                <!-- portfolio_block -->
+                <div class="projects">
+                    @foreach (Urunler list in ViewBag.List) {
+                    <div class="span4 element category01" data-category="category01">
+                        <div class="hover_img">
+                            <a href="~/Home/Urun/@list.ID">
+                                <img src="@list.Resim" alt="" />
+                            </a>
+                        </div>
+                        <div class="item_description">
+                            <h6><a href="~/Home/Urun/@list.ID">@list.UrunAdi</a></h6>
+                            <div class="descr">@list.Aciklama</div>
+                        </div>
+                    </div>
+                    }
+                    <div class="clear"></div>
+                </div>
+                <!-- //portfolio_block -->
+            </div>
+        </div>
+    </div>
+    <!--//MAIN CONTENT AREA-->
+
+</div>
+<!--//page_container-->
