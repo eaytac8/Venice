@@ -92,6 +92,15 @@ namespace Venice.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CinsiyetEkle(FormCollection form)
+        {
+            Cinsiyet cinsiyet = new Cinsiyet();
+            cinsiyet.Cinsiyeti = form["Cinsiyet"];
+            baglanti.Cinsiyet.Add(cinsiyet);
+            baglanti.SaveChanges();
+
+            return Redirect("~/Admin");
+        }
         public ActionResult MarkaEkle(FormCollection form)
         {
             Marka marka = new Marka();
